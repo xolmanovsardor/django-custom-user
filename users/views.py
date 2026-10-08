@@ -14,8 +14,8 @@ from .utils import generate_otp
 
 
 class RegisterView(APIView):
-    def post(self, reqeust: Request) -> Response:
-        serializer = RegisterUserSerializer(data=reqeust.data)
+    def post(self, request: Request) -> Response:
+        serializer = RegisterUserSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             validated_data = serializer.validated_data
 
@@ -42,7 +42,7 @@ class RegisterView(APIView):
             html_message = render_to_string('otp.html', context)
             plain_message = strip_tags(html_message)
             subject = 'Tasdiqlash'
-            from_email = 'djumanovdev@gmail.com'
+            from_email = 'holmanovsardor@gmail.com'
             to_list = [user.email]
 
             send_mail(
